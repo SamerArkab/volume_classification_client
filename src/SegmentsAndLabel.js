@@ -1,6 +1,35 @@
-import { useLocation } from 'react-router-dom';
+//import { useLocation } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
 
 function SegmentsAndLabel() {
+    const [imageUrls, setImageUrls] = useState([]);
+
+    useEffect(() => {
+      // Fetch the list of image filenames from the server
+      fetch('http://localhost:5000/api/images')
+        .then(response => response.json())
+        .then(data => {
+          // Construct the image URLs based on the server URL and the filenames
+          const urls = data.map(filename => `http://localhost:5000/uploads/${filename}`);
+          setImageUrls(urls);
+        })
+        .catch(error => {
+          console.error('Error fetching images:', error);
+        });
+    }, []);
+  
+    return (
+      <div>
+        <h1>Image Display</h1>
+        {imageUrls.map((imageUrl, index) => (
+          <div key={index}>
+            <img src={imageUrl} alt={`# ${index}`} />
+          </div>
+        ))}
+      </div>
+    );
+  }
+    /*
     const location = useLocation();
     const responseData = location.state?.responseData;
 
@@ -16,5 +45,5 @@ function SegmentsAndLabel() {
         </div>
     );
 }
-
+*/
 export default SegmentsAndLabel;
