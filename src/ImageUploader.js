@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import { Container, Row, Col, Form, Button } from 'react-bootstrap';
+import { Container, Row, Col, Form, Button, Spinner } from 'react-bootstrap';
 
 function ImageUploader() {
     const [selectedImage, setSelectedImage] = useState(null);
+    const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
 
     // Function to handle the image selection
@@ -14,6 +15,7 @@ function ImageUploader() {
 
     // Function to send the image to the server
     const uploadImage = async () => {
+        setLoading(true);
         try {
             const formData = new FormData();
             formData.append('image', selectedImage, selectedImage.name);
@@ -31,11 +33,13 @@ function ImageUploader() {
         } catch (error) {
             // Handle any errors that occurred during the request
             console.error('Error uploading image:', error);
+        } finally {
+            setLoading(false);
         }
     };
 
     return (
-        <div style={{ backgroundColor: '#262626', color: '#fff', height: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+        <div style={{ backgroundColor: '#262626', color: '#fff', minHeight: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center', overflowY: 'auto' }}>
             <Container style={{ backgroundColor: '#333', borderRadius: '1rem', padding: '1rem 2rem 2rem', maxWidth: '32rem', display: 'flex', flexDirection: 'column', justifyContent: 'flex-start' }}>
                 <Row className="justify-content-center" >
                     <Col sm={12}>
@@ -50,10 +54,10 @@ function ImageUploader() {
                         <b style={{ marginBottom: '1rem', textAlign: 'center', fontSize: '3rem', textShadow: '2px 2px 4px #000' }}>Image Analyzer</b>
                         <Form>
                             <Form.Group controlId="imageUpload">
-                                <Form.Control type="file" accept="image/*" capture="environment" style={{ marginTop: '1rem', marginBottom: '1rem' }} onChange={handleImageUpload} />
+                                <Form.Control type="file" accept="image/*" capture="environment" style={{ marginTop: '1rem', marginBottom: '1rem' }} onChange={handleImageUpload} disabled={loading} />
                             </Form.Group>
-                            <Button variant="outline-light" style={{ width: '100%', fontSize: '1.125rem' }} onClick={uploadImage}>
-                                Upload Image
+                            <Button variant="outline-light" style={{ width: '100%', fontSize: '1.125rem' }} onClick={uploadImage} disabled={loading}>
+                                {loading ? <Spinner animation="border" size="sm" /> : 'Upload Image'}
                             </Button>
                         </Form>
                     </Col>
