@@ -37,9 +37,9 @@ function ImageUploader() {
     return (
         <div style={{ backgroundColor: '#262626', color: '#fff', height: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
             <Container style={{ backgroundColor: '#333', borderRadius: '1rem', padding: '1rem 2rem 2rem', maxWidth: '32rem', display: 'flex', flexDirection: 'column', justifyContent: 'flex-start' }}>
-                <Row className="justify-content-center" style={{ marginTop: '1rem' }}>
+                <Row className="justify-content-center" >
                     <Col sm={12}>
-                        <h2 style={{ marginBottom: '1rem', textAlign: 'center', fontSize: '3rem', textShadow: '2px 2px 4px #000' }}>Image Uploader</h2>
+                        <b style={{ marginBottom: '1rem', textAlign: 'center', fontSize: '3rem', textShadow: '2px 2px 4px #000' }}>Image Uploader</b>
                         <Form>
                             <Form.Group controlId="imageUpload">
                                 <Form.Label style={{ fontWeight: 'bold', fontSize: '1.125rem', marginRight: '1rem' }}>Upload Image</Form.Label>
