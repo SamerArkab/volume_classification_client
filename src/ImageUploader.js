@@ -39,11 +39,18 @@ function ImageUploader() {
             <Container style={{ backgroundColor: '#333', borderRadius: '1rem', padding: '1rem 2rem 2rem', maxWidth: '32rem', display: 'flex', flexDirection: 'column', justifyContent: 'flex-start' }}>
                 <Row className="justify-content-center" >
                     <Col sm={12}>
-                        <b style={{ marginBottom: '1rem', textAlign: 'center', fontSize: '3rem', textShadow: '2px 2px 4px #000' }}>Image Uploader</b>
+                        <p style={{ fontSize: '2rem', textShadow: '2px 2px 4px #000' }}><b>Instructions:</b></p>
+                        <ol>
+                            <li>Choose an image from your gallery or take a new picture to upload for analyzing.</li>
+                            <li>Analyzing your image might take up to two minutes, depending on the volume and ingredients in your plate.</li>
+
+                        </ol>
+                    </Col>
+                    <Col sm={12}>
+                        <b style={{ marginBottom: '1rem', textAlign: 'center', fontSize: '3rem', textShadow: '2px 2px 4px #000' }}>Image Analyzer</b>
                         <Form>
                             <Form.Group controlId="imageUpload">
-                                <Form.Label style={{ fontWeight: 'bold', fontSize: '1.125rem', marginRight: '1rem' }}>Upload Image</Form.Label>
-                                <Form.Control type="file" style={{ marginTop: '1rem', marginBottom: '1rem' }} onChange={handleImageUpload} />
+                                <Form.Control type="file" accept="image/*" capture="environment" style={{ marginTop: '1rem', marginBottom: '1rem' }} onChange={handleImageUpload} />
                             </Form.Group>
                             <Button variant="outline-light" style={{ width: '100%', fontSize: '1.125rem' }} onClick={uploadImage}>
                                 Upload Image

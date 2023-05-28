@@ -27,7 +27,11 @@ function SegmentsAndLabel() {
             .catch(error => {
                 console.error('Error fetching images:', error);
             });
-    }, []);
+
+            if (responseData.img_volume_label_nut_val && responseData.img_volume_label_nut_val.length > 0) {
+                setCurrentData(toTitleCase(responseData.img_volume_label_nut_val[2][0]));
+            }
+    }, [responseData.img_volume_label_nut_val]);
 
     // Method to go to next image
     const nextImage = () => {
