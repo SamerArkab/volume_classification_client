@@ -28,9 +28,9 @@ function SegmentsAndLabel() {
                 console.error('Error fetching images:', error);
             });
 
-            if (responseData.img_volume_label_nut_val && responseData.img_volume_label_nut_val.length > 0) {
-                setCurrentData(toTitleCase(responseData.img_volume_label_nut_val[2][0]));
-            }
+        if (responseData.img_volume_label_nut_val && responseData.img_volume_label_nut_val.length > 0) {
+            setCurrentData(toTitleCase(responseData.img_volume_label_nut_val[2][0]));
+        }
     }, [responseData.img_volume_label_nut_val]);
 
     // Method to go to next image
@@ -62,8 +62,8 @@ function SegmentsAndLabel() {
     };
 
     return (
-        <div style={{ backgroundColor: '#262626', height: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center', color: '#fff' }}>
-            <Container style={{ backgroundColor: '#333', borderRadius: '1rem', padding: '1rem 2rem 2rem', maxWidth: '30rem', display: 'flex', flexDirection: 'column', justifyContent: 'flex-start', position: 'relative' }}>
+        <div style={{ backgroundColor: '#262626', minHeight: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'flex-start', overflowY: 'auto', color: '#fff' }}>
+            <Container style={{ backgroundColor: '#333', borderRadius: '1rem', padding: '1rem 2rem 2rem', maxWidth: '27rem', display: 'flex', flexDirection: 'column', justifyContent: 'flex-start', position: 'relative', paddingTop: '2rem', marginTop: '1rem', marginBottom: '1rem' }}>
                 <Row className="justify-content-center" style={{ marginBottom: '1rem' }}>
                     <Col xs={4} md={4} style={{ textAlign: 'left' }}>
                         <img src="delete_icon.png" alt="Delete Icon" style={{ height: '2rem', marginRight: '1rem' }} />

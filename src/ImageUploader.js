@@ -39,17 +39,8 @@ function ImageUploader() {
     };
 
     return (
-        <div style={{ 
-            backgroundColor: '#262626', 
-            color: '#fff', 
-            minHeight: '100vh', 
-            display: 'flex', 
-            justifyContent: 'center', 
-            alignItems: 'flex-start', 
-            overflowY: 'auto',
-            padding: '2rem 0'  // Add vertical padding
-        }}>
-            <Container style={{ backgroundColor: '#333', borderRadius: '1rem', padding: '1rem 2rem 2rem', maxWidth: '32rem', display: 'flex', flexDirection: 'column', justifyContent: 'flex-start' }}>
+        <div style={{ backgroundColor: '#262626', color: '#fff', minHeight: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center', overflowY: 'auto' }}>
+            <Container style={{ backgroundColor: '#333', borderRadius: '1rem', padding: '1rem 2rem 2rem', maxWidth: '27rem', display: 'flex', flexDirection: 'column', justifyContent: 'flex-start' }}>
                 <Row className="justify-content-center" >
                     <Col sm={12}>
                         <p style={{ fontSize: '2rem', textShadow: '2px 2px 4px #000' }}><b>Instructions:</b></p>
@@ -72,7 +63,6 @@ function ImageUploader() {
                 </Row>
             </Container>
         </div>
-        
     );
 }
 
