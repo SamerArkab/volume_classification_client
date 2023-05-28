@@ -5,16 +5,23 @@ import { Container, Row, Col, Button } from 'react-bootstrap';
 function SegmentsAndLabel() {
     const [imageUrls, setImageUrls] = useState([]);
     const [currentIndex, setCurrentIndex] = useState(0);
+
     const location = useLocation();
+    if (!location.state || !location.state.responseData) {
+        return <Redirect to="/ImageUploader" />;
+    }
     const responseData = location.state.responseData;
     console.log(responseData.data);
+
     useEffect(() => {
         // Fetch the list of image filenames from the server
         fetch('http://localhost:5000/api/images')
             .then(response => response.json())
             .then(data => {
+                // Filter the filenames that start with "segmented_"
+                const filteredData = data.filter(filename => filename.startsWith('segmented_'));
                 // Construct the image URLs based on the server URL and the filenames
-                const urls = data.map(filename => `http://localhost:5000/uploads/${filename}`);
+                const urls = filteredData.map(filename => `http://localhost:5000/uploads/${filename}`);
                 setImageUrls(urls);
             })
             .catch(error => {
@@ -49,7 +56,11 @@ function SegmentsAndLabel() {
                             <div>
                                 <img src={imageUrls[currentIndex]} alt={`#${currentIndex}`} style={{ maxWidth: '18rem', height: 'auto', marginBottom: '2rem' }} />
                                 <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                                    <Button variant="outline-light" style={{ minWidth: '4rem', fontSize: '1.125rem' }} onClick={prevImage}>Prev</Button>
+                                    {currentIndex > 0 ? (
+                                        <Button variant="outline-light" style={{ minWidth: '4rem', fontSize: '1.125rem' }} onClick={prevImage}>Prev</Button>
+                                    ) : (
+                                        <div style={{ minWidth: '4rem' }}></div> // This is a placeholder that will take up the same space as the button
+                                    )}
                                     <Button variant="outline-light" style={{ minWidth: '4rem', fontSize: '1.125rem', marginLeft: 'auto' }} onClick={nextImage}>{currentIndex === imageUrls.length - 1 ? 'Total Result' : 'Next'}</Button>
                                 </div>
                             </div>
