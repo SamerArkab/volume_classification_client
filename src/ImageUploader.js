@@ -39,7 +39,16 @@ function ImageUploader() {
     };
 
     return (
-        <div style={{ backgroundColor: '#262626', color: '#fff', minHeight: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center', overflowY: 'auto' }}>
+        <div style={{ 
+            backgroundColor: '#262626', 
+            color: '#fff', 
+            minHeight: '100vh', 
+            display: 'flex', 
+            justifyContent: 'center', 
+            alignItems: 'flex-start', 
+            overflowY: 'auto',
+            padding: '2rem 0'  // Add vertical padding
+        }}>
             <Container style={{ backgroundColor: '#333', borderRadius: '1rem', padding: '1rem 2rem 2rem', maxWidth: '32rem', display: 'flex', flexDirection: 'column', justifyContent: 'flex-start' }}>
                 <Row className="justify-content-center" >
                     <Col sm={12}>
@@ -47,7 +56,6 @@ function ImageUploader() {
                         <ol>
                             <li>Choose an image from your gallery or take a new picture to upload for analyzing.</li>
                             <li>Analyzing your image might take up to two minutes, depending on the volume and ingredients in your plate.</li>
-
                         </ol>
                     </Col>
                     <Col sm={12}>
@@ -64,6 +72,7 @@ function ImageUploader() {
                 </Row>
             </Container>
         </div>
+        
     );
 }
 
