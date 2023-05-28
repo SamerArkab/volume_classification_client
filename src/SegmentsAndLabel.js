@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { Container, Row, Col, Button } from 'react-bootstrap';
+//import { useNavigate } from 'react-router-dom';
 
 function SegmentsAndLabel() {
     const [imageUrls, setImageUrls] = useState([]);
     const [currentIndex, setCurrentIndex] = useState(0);
     const [currentData, setCurrentData] = useState(null); // State to store current data
+    //const navigate = useNavigate();
 
     const location = useLocation();
     const responseData = location.state ? location.state.responseData : {};
@@ -46,9 +48,6 @@ function SegmentsAndLabel() {
             const data = responseData.img_volume_label_nut_val[(currentIndex - 1) * 3 + 2][0];
             setCurrentData(toTitleCase(data));
         }
-        else {
-
-        }
     };
 
     const toTitleCase = (str) => {
@@ -82,7 +81,11 @@ function SegmentsAndLabel() {
                             <div>
                                 <img src={imageUrls[currentIndex]} alt={`#${currentIndex}`} style={{ width: '100%', height: 'auto', marginBottom: '2rem' }} />
                                 <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                                    <Button variant="outline-light" style={{ minWidth: '4rem', fontSize: '1.125rem', color: currentIndex === 0 ? '#1b4f72' : 'black' }} onClick={prevImage}>{currentIndex === 0 ? 'Upload New Image' : 'Prev'}</Button>
+                                    {currentIndex > 0 ? (
+                                        <Button variant="outline-light" style={{ minWidth: '4rem', fontSize: '1.125rem' }} onClick={prevImage}>Prev</Button>
+                                    ) : (
+                                        <div style={{ minWidth: '4rem' }}></div> // This is a placeholder that will take up the same space as the button
+                                    )}
                                     <Button variant="outline-light" style={{ minWidth: '4rem', fontSize: '1.125rem', color: currentIndex === imageUrls.length - 1 ? '#1b4f72' : 'black' }} onClick={nextImage}>{currentIndex === imageUrls.length - 1 ? 'Total Result' : 'Next'}</Button>
                                 </div>
                             </div>
