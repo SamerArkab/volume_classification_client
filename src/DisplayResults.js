@@ -19,7 +19,7 @@ function DisplayResults() {
         calculateSum(bigArray);
 
         // Delete all saved images
-        fetch('http://localhost:5000/api/deleteAll', {
+        fetch('http://volume-classification-server.vercel.app/api/deleteAll', {
             method: 'GET',
         })
             .catch(error => {
