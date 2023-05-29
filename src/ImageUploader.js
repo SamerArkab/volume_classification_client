@@ -20,7 +20,7 @@ function ImageUploader() {
             const formData = new FormData();
             formData.append('image', selectedImage, selectedImage.name);
 
-            const response = await axios.post('http://volume-classification-server.vercel.app/upload', formData, {
+            const response = await axios.post('https://volume-classification-server.vercel.app/api/upload', formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }

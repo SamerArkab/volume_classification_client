@@ -16,13 +16,13 @@ function SegmentsAndLabel() {
 
     useEffect(() => {
         // Fetch the list of image filenames from the server
-        fetch('http://volume-classification-server.vercel.app/images')
+        fetch('https://volume-classification-server.vercel.app/api/images')
             .then(response => response.json())
             .then(data => {
                 // Filter the filenames that start with "segmented_"
                 const filteredData = data.filter(filename => filename.startsWith('segmented_'));
                 // Construct the image URLs based on the server URL and the filenames
-                const urls = filteredData.map(filename => `http://volume-classification-server.vercel.app/uploads/${filename}`);
+                const urls = filteredData.map(filename => `https://volume-classification-server.vercel.app/uploads/${filename}`);
                 setImageUrls(urls);
             })
             .catch(error => {
@@ -68,7 +68,7 @@ function SegmentsAndLabel() {
         const filename = imageUrls[currentIndex].split('/').pop();
 
         // Send DELETE request to server
-        fetch(`http://volume-classification-server.vercel.app/delete/${filename}`, {
+        fetch(`https://volume-classification-server.vercel.app/api/delete/${filename}`, {
             method: 'DELETE',
         })
             .then(response => response.json())
@@ -122,7 +122,7 @@ function SegmentsAndLabel() {
             };
 
             // Send POST request to server to update the label
-            const response = await fetch(`http://volume-classification-server.vercel.app/edit`, {
+            const response = await fetch(`https://volume-classification-server.vercel.app/api/edit`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
