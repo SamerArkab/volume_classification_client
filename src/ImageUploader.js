@@ -46,6 +46,7 @@ function ImageUploader() {
                         <p style={{ fontSize: '2rem', textShadow: '2px 2px 4px #000' }}><b>Instructions:</b></p>
                         <ol>
                             <li>Choose an image from your gallery or take a new picture to upload for analyzing.</li>
+                            <li>Please isolate and display only the plate in the uploaded image for best results.</li>
                             <li>Analyzing your image might take up to two minutes, depending on the volume and ingredients in your plate.</li>
                         </ol>
                     </Col>
