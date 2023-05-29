@@ -1,16 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { Container, Row, Col, Button } from 'react-bootstrap';
-//import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 function SegmentsAndLabel() {
     const [imageUrls, setImageUrls] = useState([]);
     const [currentIndex, setCurrentIndex] = useState(0);
     const [currentData, setCurrentData] = useState(null); // State to store current data
-    //const navigate = useNavigate();
+    const navigate = useNavigate();
     const [newTitle, setNewTitle] = useState('');
     const [isPopupVisible, setIsPopupVisible] = useState(false);
-
 
     const location = useLocation();
     const responseData = location.state ? location.state.responseData : {};
@@ -41,6 +40,10 @@ function SegmentsAndLabel() {
             setCurrentIndex(currentIndex + 1); // `Set` is inside the scope of the `nextImage` function, `currentIndex` isn't really changed yet (only after we're outside the function's scope it will update)
             const data = responseData.img_volume_label_nut_val[(currentIndex + 1) * 3 + 2][0]; // Therefore, when I use `currentIndex`, increment it by 1 here too
             setCurrentData(toTitleCase(data));
+        }
+        else {
+            console.log(responseData);
+            navigate('/DisplayResults', { state: { responseData } });
         }
     };
 
@@ -178,7 +181,7 @@ function SegmentsAndLabel() {
                         borderRadius: '10px',
                         zIndex: 1000, // This needs to be a high number to make sure it appears above all other content
                     }}>
-                        <h2>Edit Title</h2>
+                        <h2>Fix Food's Name</h2>
                         <input type="text" value={newTitle} onChange={handleInputChange} />
                         <div>
                             <Button variant="secondary" onClick={() => setIsPopupVisible(false)}>
