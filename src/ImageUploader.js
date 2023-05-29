@@ -54,7 +54,7 @@ function ImageUploader() {
                         <b style={{ marginBottom: '1rem', textAlign: 'center', fontSize: '3rem', textShadow: '2px 2px 4px #000' }}>Image Analyzer</b>
                         <Form>
                             <Form.Group controlId="imageUpload">
-                                <Form.Control type="file" accept="image/*" capture="environment" style={{ marginTop: '1rem', marginBottom: '1rem' }} onChange={handleImageUpload} disabled={loading} />
+                                <Form.Control type="file" accept="image/*" style={{ marginTop: '1rem', marginBottom: '1rem' }} onChange={handleImageUpload} disabled={loading} />
                             </Form.Group>
                             <Button variant="outline-light" style={{ width: '100%', fontSize: '1.125rem' }} onClick={uploadImage} disabled={loading}>
                                 {loading ? <Spinner animation="border" size="sm" /> : 'Upload Image'}
