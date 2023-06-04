@@ -19,7 +19,7 @@ function DisplayResults() {
         calculateSum(bigArray);
 
         // Delete all saved images
-        fetch('http://34.133.130.136:5000/api/deleteAll', {
+        fetch('https://34.133.130.136:5000/api/deleteAll', {
             method: 'GET',
         })
             .catch(error => {

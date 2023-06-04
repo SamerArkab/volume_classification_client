@@ -20,7 +20,7 @@ function ImageUploader() {
             const formData = new FormData();
             formData.append('image', selectedImage, selectedImage.name);
 
-            const response = await axios.post('http://34.133.130.136:5000/api/upload', formData, {
+            const response = await axios.post('https://34.133.130.136:5000/api/upload', formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }
