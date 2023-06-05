@@ -6,6 +6,7 @@ import { Container, Row, Col, Form, Button, Spinner } from 'react-bootstrap';
 function ImageUploader() {
     const [selectedImage, setSelectedImage] = useState(null);
     const [loading, setLoading] = useState(false);
+    const [requestId, setRequestId] = useState(null);
     const navigate = useNavigate();
 
     // Function to handle the image selection
@@ -29,12 +30,30 @@ function ImageUploader() {
             // Handle the response from the server
             console.log(response.data);
 
-            navigate('/SegmentsAndLabel', { state: { responseData: response.data } }); // Pass response data as state while navigating 
+            setRequestId(response.data.requestId); // Store the request ID
         } catch (error) {
             // Handle any errors that occurred during the request
             console.error('Error uploading image:', error);
         } finally {
             setLoading(false);
+        }
+    };
+
+    // Function to check the processing results
+    const checkResults = async () => {
+        try {
+            const response = await axios.get(`https://labelvolumenutritionserver.chickenkiller.com/api/result/${requestId}`);
+
+            if (response.status === 200) {
+                const result = response.data;
+                // Handle the result
+                console.log(result);
+                navigate('/SegmentsAndLabel', { state: { responseData: result } }); // Pass response data as state while navigating
+            } else {
+                console.error('Error retrieving processing results:', response.data.message);
+            }
+        } catch (error) {
+            console.error('Error retrieving processing results:', error);
         }
     };
 
@@ -54,11 +73,16 @@ function ImageUploader() {
                         <b style={{ marginBottom: '1rem', textAlign: 'center', fontSize: '3rem', textShadow: '2px 2px 4px #000' }}>Image Analyzer</b>
                         <Form>
                             <Form.Group controlId="imageUpload">
-                                <Form.Control type="file" accept="image/*" style={{ marginTop: '1rem', marginBottom: '1rem' }} onChange={handleImageUpload} disabled={loading} />
+                                <Form.Control type="file" accept="image/*" style={{ marginTop: '1rem', marginBottom: '1rem' }} onChange={handleImageUpload} disabled={loading || requestId !== null} />
                             </Form.Group>
-                            <Button variant="outline-light" style={{ width: '100%', fontSize: '1.125rem' }} onClick={uploadImage} disabled={loading}>
+                            <Button variant="outline-light" style={{ width: '100%', fontSize: '1.125rem' }} onClick={uploadImage} disabled={loading || requestId !== null}>
                                 {loading ? <Spinner animation="border" size="sm" /> : 'Upload Image'}
                             </Button>
+                            {requestId && (
+                                <Button variant="outline-light" style={{ width: '100%', fontSize: '1.125rem', marginTop: '1rem' }} onClick={checkResults}>
+                                    Check Results
+                                </Button>
+                            )}
                         </Form>
                     </Col>
                 </Row>
