@@ -64,10 +64,10 @@ function ImageUploader() {
                     <Col sm={12}>
                         <p style={{ fontSize: '2rem', textShadow: '2px 2px 4px #000' }}><b>Instructions:</b></p>
                         <ol>
-                            <li>Choose an image from your gallery or take a new picture to upload for analyzing.</li>
-                            <li>Please isolate and display only the plate in the uploaded image for best results.</li>
-                            <li>Analyzing your image might take up to two minutes, depending on the volume and ingredients in your plate.</li>
-                            <li>After clicking on "Upload Image" a "Check Results" button will appear, click it to check if you results are ready to be displayed (be patient please, as mentioned abov, this may take a couple of minutes).</li>
+                            <li>Choose an image from your gallery or take a new picture to upload for analysis.</li>
+                            <li>Please isolate and display only the plate in the uploaded image for the best results.</li>
+                            <li>Analysis of your image might take up to two minutes, depending on the volume and ingredients on your plate.</li>
+                            <li>After clicking on the "Upload Image" button, a "Check Results" button will appear. Click it to see if your results are ready to be displayed (please be patient, as mentioned above, this may take a couple of minutes).</li>
                         </ol>
                     </Col>
                     <Col sm={12}>
