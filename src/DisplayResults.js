@@ -54,6 +54,7 @@ function DisplayResults() {
 
     function goBack() {
         navigate('/');
+        window.location.reload(); // Refresh the page
     }
 
     return (
