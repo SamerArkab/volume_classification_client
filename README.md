@@ -25,3 +25,5 @@ Once the processing is done, users will be navigated to the `SegmentsAndLabel` s
 ### `DisplayResults`
 
 Finally, once all segments are verified, the application will navigate to the `DisplayResults` screen where the total nutrition information is displayed. The result includes the sum of Calories, Fat, Cholesterol, Sodium, Carbohydrates, Sugars, and Protein for all segments in the image.
+
+## Example run
