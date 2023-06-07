@@ -182,7 +182,7 @@ function SegmentsAndLabel() {
                             fontSize: '1.5rem',
                             textShadow: '2px 2px 4px #000',
                         }}>
-                            Volume: {parseFloat(currentVolume).toFixed(2)}
+                            Volume: {parseFloat(currentVolume).toFixed(2)} ml
                         </b>
                     </Col>
                 </Row>
