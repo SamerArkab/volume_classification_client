@@ -10,9 +10,10 @@ function DisplayResults() {
     console.log(responseData.img_volume_label_nut_val);
 
     const [sums, setSums] = useState([]);
+    const [totalVolume, setTotalVolume] = useState(0);
     const [dishNames, setDishNames] = useState('');
 
-    const labels = ["Calories", "Fat", "Cholesterol", "Sodium", "Carbohydrates", "Sugars", "Protein"];
+    const labels = ["Total Volume", "Calories", "Fat", "Cholesterol", "Sodium", "Carbohydrates", "Sugars", "Protein"];
 
     useEffect(() => {
         const bigArray = responseData.img_volume_label_nut_val || [];
@@ -30,9 +31,11 @@ function DisplayResults() {
     function calculateSum(bigArray) {
         let sums = Array(7).fill(0); // To store sums of indices 2 to 9
         let names = []; // To store names of dishes
+        let totalVolume = 0;
 
         for (let i = 2; i < bigArray.length; i += 3) { // Start at index 2, increment by 3 each iteration
             let smallArray = bigArray[i]; // The small array
+            totalVolume += parseFloat(bigArray[i-1]);
 
             for (let j = 2; j < smallArray.length; j++) { // Start at index 2 of the small array
                 sums[j - 2] += smallArray[j]; // Add to the corresponding sum
@@ -48,7 +51,8 @@ function DisplayResults() {
             }
         }
 
-        setSums(sums.map(sum => Number(sum.toFixed(2))));
+        setTotalVolume(Number(totalVolume.toFixed(2)));
+        setSums([totalVolume].concat(sums.map(sum => Number(sum.toFixed(2)))));
         setDishNames(names.join(' + '));
     }
 
