@@ -7,6 +7,7 @@ function SegmentsAndLabel() {
     const [imageUrls, setImageUrls] = useState([]);
     const [currentIndex, setCurrentIndex] = useState(0);
     const [currentData, setCurrentData] = useState(null); // State to store current data
+    const [currentVolume, setCurrentVolume] = useState(null); // State to store current volume
     const navigate = useNavigate();
     const [newTitle, setNewTitle] = useState('');
     const [isPopupVisible, setIsPopupVisible] = useState(false);
@@ -31,6 +32,7 @@ function SegmentsAndLabel() {
 
         if (responseData.img_volume_label_nut_val && responseData.img_volume_label_nut_val.length > 0) {
             setCurrentData(toTitleCase(responseData.img_volume_label_nut_val[2][0]));
+            setCurrentVolume(responseData.img_volume_label_nut_val[1]);
         }
     }, [responseData.img_volume_label_nut_val]);
 
@@ -40,6 +42,8 @@ function SegmentsAndLabel() {
             setCurrentIndex(currentIndex + 1); // `Set` is inside the scope of the `nextImage` function, `currentIndex` isn't really changed yet (only after we're outside the function's scope it will update)
             const data = responseData.img_volume_label_nut_val[(currentIndex + 1) * 3 + 2][0]; // Therefore, when I use `currentIndex`, increment it by 1 here too
             setCurrentData(toTitleCase(data));
+            const volume = responseData.img_volume_label_nut_val[(currentIndex + 1) * 3 + 1];
+            setCurrentVolume(volume);
         }
         else {
             console.log(responseData);
@@ -53,6 +57,8 @@ function SegmentsAndLabel() {
             setCurrentIndex(currentIndex - 1);
             const data = responseData.img_volume_label_nut_val[(currentIndex - 1) * 3 + 2][0];
             setCurrentData(toTitleCase(data));
+            const volume = responseData.img_volume_label_nut_val[(currentIndex - 1) * 3 + 1];
+            setCurrentVolume(volume);
         }
     };
 
@@ -168,6 +174,17 @@ function SegmentsAndLabel() {
                         </b>
                     </Col>
                     <Col xs={4} md={4}></Col>
+                </Row>
+
+                <Row className="justify-content-center" style={{ marginBottom: '1rem' }}>
+                    <Col xs={12} style={{ textAlign: 'center' }}>
+                        <b style={{
+                            fontSize: '1.5rem',
+                            textShadow: '2px 2px 4px #000',
+                        }}>
+                            Volume: {parseFloat(currentVolume).toFixed(2)}
+                        </b>
+                    </Col>
                 </Row>
 
                 {isPopupVisible && (
