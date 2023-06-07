@@ -28,9 +28,8 @@ Finally, once all segments are verified, the application will navigate to the `D
 
 ## Example Run
 
-https://github.com/SamerArkab/volume_classification_client/assets/80578540/6d1a6ff4-cb48-401e-a508-5beda2f6c0de
+https://github.com/SamerArkab/volume_classification_client/assets/80578540/b62d15da-3731-4ddd-8895-61ba68503803
 
 
-https://github.com/SamerArkab/volume_classification_client/assets/80578540/b5383fce-a2cf-41d4-baa5-8c827d1821cb
-
+https://github.com/SamerArkab/volume_classification_client/assets/80578540/20cefc7f-60ab-49fd-83f7-6c1b302511a8
 
