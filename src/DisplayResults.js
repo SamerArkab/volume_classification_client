@@ -35,7 +35,7 @@ function DisplayResults() {
 
         for (let i = 2; i < bigArray.length; i += 3) { // Start at index 2, increment by 3 each iteration
             let smallArray = bigArray[i]; // The small array
-            totalVolume += parseFloat(bigArray[i-1]);
+            totalVolume += parseFloat(bigArray[i - 1]);
 
             for (let j = 2; j < smallArray.length; j++) { // Start at index 2 of the small array
                 sums[j - 2] += smallArray[j]; // Add to the corresponding sum
@@ -76,7 +76,7 @@ function DisplayResults() {
                                 {labels.map((label, index) => (
                                     <tr key={index} style={{ fontSize: '1.5rem' }}>
                                         <td>{label}</td>
-                                        <td>{sums[index]}</td>
+                                        <td>{index === 0 ? `${Number(sums[index]).toFixed(2)} ml` : Number(sums[index]).toFixed(2)}</td>
                                     </tr>
                                 ))}
                             </tbody>
