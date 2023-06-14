@@ -20,7 +20,7 @@ function DisplayResults() {
         calculateSum(bigArray);
 
         // Delete all saved images
-        fetch('https://labelvolumenutritionserver.chickenkiller.com/api/deleteAll', {
+        fetch('https://nut-values-server.chickenkiller.com/api/deleteAll', {
             method: 'GET',
         })
             .catch(error => {
