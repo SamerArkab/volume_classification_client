@@ -42,7 +42,7 @@ function ImageUploader() {
     // Function to check the processing results
     const checkResults = async () => {
         try {
-            const response = await axios.get(`https://labelvolumenutritionserver.chickenkiller.com/api/result/${requestId}`);
+            const response = await axios.get(`https://34.133.168.240/api/result/${requestId}`);
 
             if (response.status === 200) {
                 const result = response.data;
