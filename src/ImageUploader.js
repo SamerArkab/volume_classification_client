@@ -21,7 +21,7 @@ function ImageUploader() {
             const formData = new FormData();
             formData.append('image', selectedImage, selectedImage.name);
 
-            const response = await axios.post('https://nut-values-server.chickenkiller.com/api/upload', formData, {
+            const response = await axios.post('https://nutritional-values-server.chickenkiller.com/api/upload', formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }
@@ -42,7 +42,7 @@ function ImageUploader() {
     // Function to check the processing results
     const checkResults = async () => {
         try {
-            const response = await axios.get(`https://nut-values-server.chickenkiller.com/api/result/${requestId}`);
+            const response = await axios.get(`https://nutritional-values-server.chickenkiller.com/api/result/${requestId}`);
 
             if (response.status === 200) {
                 const result = response.data;
