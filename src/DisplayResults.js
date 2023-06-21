@@ -20,7 +20,7 @@ function DisplayResults() {
         calculateSum(bigArray);
 
         // Delete all saved images
-        fetch('https://nutritional-values-server.chickenkiller.com/api/deleteAll', {
+        fetch('https://nutritional-values.mooo.com/api/deleteAll', {
             method: 'GET',
         })
             .catch(error => {

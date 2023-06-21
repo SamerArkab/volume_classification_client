@@ -17,13 +17,13 @@ function SegmentsAndLabel() {
 
     useEffect(() => {
         // Fetch the list of image filenames from the server
-        fetch('https://nutritional-values-server.chickenkiller.com/api/images')
+        fetch('https://nutritional-values.mooo.com/api/images')
             .then(response => response.json())
             .then(data => {
                 // Filter the filenames that start with "segmented_"
                 const filteredData = data.filter(filename => filename.startsWith('segmented_'));
                 // Construct the image URLs based on the server URL and the filenames
-                const urls = filteredData.map(filename => `https://nutritional-values-server.chickenkiller.com/uploads/${filename}`);
+                const urls = filteredData.map(filename => `https://nutritional-values.mooo.com/uploads/${filename}`);
                 setImageUrls(urls);
             })
             .catch(error => {
@@ -74,7 +74,7 @@ function SegmentsAndLabel() {
         const filename = imageUrls[currentIndex].split('/').pop();
 
         // Send DELETE request to server
-        fetch(`https://nutritional-values-server.chickenkiller.com/api/delete/${filename}`, {
+        fetch(`https://nutritional-values.mooo.com/api/delete/${filename}`, {
             method: 'DELETE',
         })
             .then(response => response.json())
@@ -128,7 +128,7 @@ function SegmentsAndLabel() {
             };
 
             // Send POST request to server to update the label
-            const response = await fetch(`https://nutritional-values-server.chickenkiller.com/api/edit`, {
+            const response = await fetch(`https://nutritional-values.mooo.com/api/edit`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
